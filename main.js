@@ -1,13 +1,14 @@
 function add(a, b)
 {
 	var s =  a + b ;
-	console.log(s);
+	return s;
 }
 
 function main()
 {
 	console.log("ciao");
-	add(4, 5);
+	s = add(4, 5);
+	console.log(s);
 	return 0;
 }
 

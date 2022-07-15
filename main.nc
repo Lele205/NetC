@@ -1,11 +1,13 @@
 function int add(int a, int b) 
 {
     int s = a + b;
-    print(s);
+    return s;
 }
 
 function int main() 
 {
     print("ciao");
-    add(4, 5);
+    int s = add(4, 5);
+    print(s);
+    return 0;
 }

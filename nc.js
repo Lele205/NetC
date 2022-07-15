@@ -31,24 +31,47 @@ var grammar = {
     {"name": "assing_fun", "symbols": [(Lexer.has("fnc") ? {type: "fnc"} : fnc), "__", (Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "__", "pmlNL", "fun_body"], "postprocess": 
         (data) =>
         {
+            data[13][0].push(data[13][1]);
             return {
                 type: "Function assing",
                 fun_type: data[2],
                 fun_name: data[4],
                 parameters: data[8],
-                body: data[13]
+                body: [...data[13][0]]
             }
         }
             },
-    {"name": "fun_body", "symbols": [{"literal":"{"}, "_", "mlNL", "statements", "mlNL", "_", {"literal":"}"}], "postprocess": 
+    {"name": "fun_body", "symbols": [{"literal":"{"}, "_", "mlNL", "statements", "mlNL", "_", "return_stat", "_", "mlNL", "_", {"literal":"}"}], "postprocess": 
         (data) =>
         {
-            return data[3];
+            return [data[3], data[6]];
+        }
+            },
+    {"name": "return_stat", "symbols": [{"literal":"return"}, "_", (Lexer.has("number") ? {type: "number"} : number), "_", {"literal":";"}], "postprocess":   
+        (data) =>
+        {
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "int | float"
+            }
+        }
+            },
+    {"name": "return_stat", "symbols": [{"literal":"return"}, "_", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":";"}], "postprocess":   
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: data[2].value
+            }
         }
             },
     {"name": "assing_var", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"="}, "_", "exp", "_", {"literal":";"}], "postprocess": 
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing",
                 var_type: data[0],
@@ -60,6 +83,7 @@ var grammar = {
     {"name": "assing_var", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"="}, "_", "op", "_", {"literal":";"}], "postprocess": 
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing",
                 var_type: data[0],
@@ -71,6 +95,7 @@ var grammar = {
     {"name": "assing_var", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"="}, "_", "func_call", "_"], "postprocess": 
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing f",
                 var_type: data[0],

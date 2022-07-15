@@ -33,7 +33,8 @@ let lexer = moo.compile
     NL:      { match: /\n|\r/, lineBreaks: true },
     types: ['int', 'float', 'double', 'string', 'array', 'matrix', 'file', 'vector', "window", 'bool'],
     fnc: 'function',
-    keywords: ['while', 'for', 'if', 'elif', 'else', 'switch', 'class', 'public', 'private', 'constructor', 'deconstructor', 'use', 'struct', 'return', 'and', 'or', 'in'],
+    rtn: 'return',
+    keywords: ['while', 'for', 'if', 'elif', 'else', 'switch', 'class', 'public', 'private', 'constructor', 'deconstructor', 'use', 'struct', 'and', 'or', 'in'],
     bool: ["true", "false"],
     id: /[a-zA-Z][a-zA-Z_0-9]*/,
 })

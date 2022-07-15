@@ -7,7 +7,12 @@ module.exports =
 
     genJS: function(filename, ast)
     {
-        const myAssing = []
+        
+        const myAssing = [];
+
+        var lastFuncType = "";
+
+        var co;
 
         function generateFromStatement(stat)
         {
@@ -22,6 +27,7 @@ module.exports =
 
             if(stat.type == "declaration and assing")
             {
+                co += 1;
                 const out = `var ${stat.var_name.value} = ${stat.var_value.value};`
             
                 var name = stat.var_name.value;
@@ -70,10 +76,31 @@ module.exports =
 
                 return out;
             }
+            else if (stat.type == "return")
+            {
+                var out = `return ${stat.value.value};`
+                if(stat.value.type == "id")
+                {
+                    for(i in myAssing)
+                        {
+                            if(myAssing[i].name == stat.value.value)
+                            {
+                                if(myAssing[i].type != lastFuncType)
+                                {
+                                    throw new Error (chalk.red(`GENERATION ERROR 0x002 (return to a variable of type ${myAssing[i].type} in a function of type: ${lastFuncType})`));
+                                }
+                                break;
+                            }
+                        }
+                }
+                return out;
+            }
             else if(stat.type == "Function assing")
             {
                 var out = `function ${stat.fun_name.value}(`;
                 
+                lastFuncType = stat.fun_type.value;
+
                 if(stat.parameters.length !== 0)
                 {
                     if(stat.parameters.length !== 1)
@@ -102,12 +129,14 @@ module.exports =
                     const li = generateFromStatement(bb);
                     arrBody.push(li);
                 }
+                for(var i = 0; i < co; i++)
+                {
+                    myAssing.pop();
+                }
+
+                co = 0;
 
                 out += arrBody.join("\n\t");
-                if(stat.fun_name.value == "main")
-                {
-                    out += "\n\treturn 0;";
-                }
                 out += "\n}\n";
                 if(stat.fun_name.value == "main")
                 {
@@ -118,6 +147,7 @@ module.exports =
             }
             else if(stat.type == "assing")
             {
+
                 const out = `${stat.var_name.value} ${stat.var_value.value};`
             
                 var name = stat.var_name.value;
@@ -168,12 +198,42 @@ module.exports =
             }
             else if(stat.type == "declaration")
             {
+                co += 1;
                 const out = `var ${stat.var_name.value};`
+                var tmp = { name: "", type: ""};
+                tmp.name = stat.var_name.value;
+                tmp.type = stat.var_type.value;
+
+                myAssing.push(tmp)
                 return out;
             }
             else if(stat.type == "declaration and assing f")
             {
-                const out = `var ${stat.var_name.value};`
+                co += 1;
+                var out = `${stat.var_name.value} = ${stat.var_value.func_name.value}(`;
+                
+                var tmp = { name: "", type: ""};
+                tmp.name = stat.var_name.value;
+                tmp.type = stat.var_type.value;
+
+                myAssing.push(tmp)
+
+                if(stat.var_value.arg_list.length !== 1)
+                {
+                    for(var i = 0; i < stat.var_value.arg_list.length - 1; i++)
+                    {
+                        out += `${stat.var_value.arg_list[i].value}, `;
+                    }
+                    out += `${stat.var_value.arg_list[stat.var_value.arg_list.length - 1].value}`;
+                }
+                else
+                {
+                    out += stat.var_value.arg_list[0].value;
+                }
+                out += ");";
+
+
+
                 return out;
             }
             else if(stat.type == "assing f")

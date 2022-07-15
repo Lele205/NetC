@@ -54,7 +54,7 @@
         "var_name": {
           "type": "id",
           "value": "s",
-          "text": "s",
+          "text": "int",
           "offset": 42,
           "lineBreaks": 0,
           "line": 3,
@@ -66,27 +66,17 @@
         }
       },
       {
-        "type": "function_call",
-        "func_name": {
+        "type": "return",
+        "value": {
           "type": "id",
-          "value": "print",
-          "text": "print",
-          "offset": 57,
+          "value": "s",
+          "text": "s",
+          "offset": 64,
           "lineBreaks": 0,
           "line": 4,
-          "col": 5
+          "col": 12
         },
-        "arg_list": [
-          {
-            "type": "id",
-            "value": "s",
-            "text": "s",
-            "offset": 63,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 11
-          }
-        ]
+        "r_t": "s"
       }
     ]
   },
@@ -136,36 +126,93 @@
         ]
       },
       {
-        "type": "function_call",
-        "func_name": {
-          "type": "id",
-          "value": "add",
-          "text": "add",
+        "type": "declaration and assing f",
+        "var_type": {
+          "type": "types",
+          "value": "int",
+          "text": "int",
           "offset": 116,
           "lineBreaks": 0,
           "line": 10,
           "col": 5
         },
+        "var_name": {
+          "type": "id",
+          "value": "s",
+          "text": "int",
+          "offset": 120,
+          "lineBreaks": 0,
+          "line": 10,
+          "col": 9
+        },
+        "var_value": {
+          "type": "function_call",
+          "func_name": {
+            "type": "id",
+            "value": "add",
+            "text": "add",
+            "offset": 124,
+            "lineBreaks": 0,
+            "line": 10,
+            "col": 13
+          },
+          "arg_list": [
+            {
+              "type": "number",
+              "value": "4",
+              "text": "4",
+              "offset": 128,
+              "lineBreaks": 0,
+              "line": 10,
+              "col": 17
+            },
+            {
+              "type": "number",
+              "value": "5",
+              "text": "5",
+              "offset": 131,
+              "lineBreaks": 0,
+              "line": 10,
+              "col": 20
+            }
+          ]
+        }
+      },
+      {
+        "type": "function_call",
+        "func_name": {
+          "type": "id",
+          "value": "print",
+          "text": "print",
+          "offset": 139,
+          "lineBreaks": 0,
+          "line": 11,
+          "col": 5
+        },
         "arg_list": [
           {
-            "type": "number",
-            "value": "4",
-            "text": "4",
-            "offset": 120,
+            "type": "id",
+            "value": "s",
+            "text": "s",
+            "offset": 145,
             "lineBreaks": 0,
-            "line": 10,
-            "col": 9
-          },
-          {
-            "type": "number",
-            "value": "5",
-            "text": "5",
-            "offset": 123,
-            "lineBreaks": 0,
-            "line": 10,
-            "col": 12
+            "line": 11,
+            "col": 11
           }
         ]
+      },
+      {
+        "type": "return",
+        "value": {
+          "type": "number",
+          "value": "0",
+          "text": "0",
+          "offset": 160,
+          "lineBreaks": 0,
+          "line": 12,
+          "col": 12
+        },
+        "r_t": "int | float"
       }
     ]
   }

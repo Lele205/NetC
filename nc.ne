@@ -20,6 +20,7 @@ statements
         }
     %}
 
+
 mlNL -> %NL:+
 pmlNL -> %NL:*
 
@@ -29,26 +30,52 @@ statement
     | func_call     {% id %}
 
 assing_fun
-    -> %fnc __ %types __ %id _ "(" _ arg_list _ ")" __ pmlNL fun_body
+    -> %fnc __ %types __ %id _ "(" _ arg_list _ ")" __ pmlNL fun_body 
     {%
         (data) =>
         {
+            data[13][0].push(data[13][1]);
             return {
                 type: "Function assing",
                 fun_type: data[2],
                 fun_name: data[4],
                 parameters: data[8],
-                body: data[13]
+                body: [...data[13][0]]
             }
         }
     %}
 
 fun_body
-    -> "{" _ mlNL statements mlNL _ "}"
+    -> "{" _ mlNL statements mlNL _ return_stat  _ mlNL _ "}"
     {%
         (data) =>
         {
-            return data[3];
+            return [data[3], data[6]];
+        }
+    %}
+
+return_stat
+    ->  "return" _ %number _ ";"
+    {%  
+        (data) =>
+        {
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "int | float"
+            }
+        }
+    %}
+    |  "return" _ %id _ ";"
+    {%  
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: data[2].value
+            }
         }
     %}
 
@@ -57,6 +84,7 @@ assing_var
     {%
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing",
                 var_type: data[0],
@@ -70,6 +98,7 @@ assing_var
     {%
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing",
                 var_type: data[0],
@@ -83,6 +112,7 @@ assing_var
     {%
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration and assing f",
                 var_type: data[0],
