@@ -1,10 +1,15 @@
-var a = 5;
-var b = 1;
-a += (  b + 5  );
-console.log(a);
-function main()
+function add(a, b)
 {
-	console.log("sono nel main");
+	var s =  a + b ;
+	console.log(s);
 }
 
-main();
+function main()
+{
+	console.log("ciao");
+	add(4, 5);
+	return 0;
+}
+
+
+main()

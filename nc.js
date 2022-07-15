@@ -269,6 +269,7 @@ var grammar = {
     {"name": "arg_list", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", "exp", "_", (Lexer.has("com") ? {type: "com"} : com), "__", "arg_list"], "postprocess": 
         (data) =>
         {
+            data[0].text = data[2].value;
             return [data[0], ...data[6]]
         }
             },
@@ -281,6 +282,7 @@ var grammar = {
     {"name": "arg_list", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", "exp", "_"], "postprocess": 
         (data) =>
         {
+            data[0].text = data[2].value;
             return [data[0]]
         }
             },
@@ -294,6 +296,12 @@ var grammar = {
         (data) =>
         {
             return[data[1]]
+        }
+            },
+    {"name": "arg_list", "symbols": ["_", (Lexer.has("number") ? {type: "number"} : number), "_"], "postprocess": 
+        (data) =>
+        {
+            return [data[1]]
         }
             },
     {"name": "exp", "symbols": [(Lexer.has("string") ? {type: "string"} : string)], "postprocess": id},

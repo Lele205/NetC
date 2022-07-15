@@ -19,20 +19,6 @@ statements
             return[...data[0], data[3]]
         }
     %}
-    | "    " statement _
-    {%
-        (data) =>
-        {
-            return [data[1]]
-        }
-    %}
-    | "    " statements mlNL _ statement _ 
-    {%
-        (data) =>
-        {
-            return[...data[1], data[4]]
-        }
-    %}
 
 mlNL -> %NL:+
 pmlNL -> %NL:*
@@ -338,6 +324,7 @@ arg_list
     {%
         (data) =>
         {
+            data[0].text = data[2].value;
             return [data[0], ...data[6]]
         }
     %}
@@ -354,6 +341,7 @@ arg_list
     {%
         (data) =>
         {
+            data[0].text = data[2].value;
             return [data[0]]
         }
     %}
@@ -371,6 +359,14 @@ arg_list
         (data) =>
         {
             return[data[1]]
+        }
+    %}
+
+    | _ %number _ 
+    {%
+        (data) =>
+        {
+            return [data[1]]
         }
     %}
  

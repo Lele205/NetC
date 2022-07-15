@@ -80,13 +80,13 @@ module.exports =
                     {
                         for(var i = 0; i < stat.parameters.length - 1; i++)
                         {
-                            out += `${stat.parameters[i].value}, `;
+                            out += `${stat.parameters[i].text}, `;
                         }
-                        out += `${stat.parameters[stat.parameters.length - 1].value}`;
+                        out += `${stat.parameters[stat.parameters.length - 1].text}`;
                     }
                     else
                     {
-                        out += stat.parameters[0].value;
+                        out += stat.parameters[0].text;
                     }
                 }
             
@@ -104,7 +104,15 @@ module.exports =
                 }
 
                 out += arrBody.join("\n\t");
+                if(stat.fun_name.value == "main")
+                {
+                    out += "\n\treturn 0;";
+                }
                 out += "\n}\n";
+                if(stat.fun_name.value == "main")
+                {
+                    out += "\n\nmain()\n";
+                }
                 return out;
 
             }
