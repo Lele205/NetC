@@ -1,14 +1,9 @@
-function add(a, b)
-{
-	var s =  a + b ;
-	return s;
-}
+const blib = require('./basicLib.js');
 
 function main()
 {
-	console.log("ciao");
-	s = add(4, 5);
-	console.log(s);
+	var win;
+	blib.LoadInterface("./index.html");
 	return 0;
 }
 

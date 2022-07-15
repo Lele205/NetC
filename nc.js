@@ -178,6 +178,7 @@ var grammar = {
         {
             return {
                 type: "declaration",
+                var_type: data[0],
                 var_name: data[2]
             }
         }

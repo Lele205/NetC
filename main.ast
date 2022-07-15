@@ -12,192 +12,65 @@
     },
     "fun_name": {
       "type": "id",
-      "value": "add",
-      "text": "add",
+      "value": "main",
+      "text": "main",
       "offset": 13,
       "lineBreaks": 0,
       "line": 1,
       "col": 14
     },
-    "parameters": [
-      {
-        "type": "types",
-        "value": "int",
-        "text": "a",
-        "offset": 17,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 18
-      },
-      {
-        "type": "types",
-        "value": "int",
-        "text": "b",
-        "offset": 24,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 25
-      }
-    ],
+    "parameters": [],
     "body": [
       {
-        "type": "declaration and assing",
+        "type": "declaration",
         "var_type": {
           "type": "types",
-          "value": "int",
-          "text": "int",
-          "offset": 38,
+          "value": "window",
+          "text": "window",
+          "offset": 27,
           "lineBreaks": 0,
           "line": 3,
           "col": 5
         },
         "var_name": {
           "type": "id",
-          "value": "s",
-          "text": "int",
-          "offset": 42,
+          "value": "win",
+          "text": "win",
+          "offset": 34,
           "lineBreaks": 0,
           "line": 3,
-          "col": 9
-        },
-        "var_value": {
-          "type": "operation",
-          "value": " a + b "
+          "col": 12
         }
       },
       {
-        "type": "return",
-        "value": {
+        "type": "function_call",
+        "obj_id": {
           "type": "id",
-          "value": "s",
-          "text": "s",
-          "offset": 64,
+          "value": "win",
+          "text": "win",
+          "offset": 43,
           "lineBreaks": 0,
           "line": 4,
-          "col": 12
+          "col": 5
         },
-        "r_t": "s"
-      }
-    ]
-  },
-  {
-    "type": "Function assing",
-    "fun_type": {
-      "type": "types",
-      "value": "int",
-      "text": "int",
-      "offset": 79,
-      "lineBreaks": 0,
-      "line": 7,
-      "col": 10
-    },
-    "fun_name": {
-      "type": "id",
-      "value": "main",
-      "text": "main",
-      "offset": 83,
-      "lineBreaks": 0,
-      "line": 7,
-      "col": 14
-    },
-    "parameters": [],
-    "body": [
-      {
-        "type": "function_call",
         "func_name": {
           "type": "id",
-          "value": "print",
-          "text": "print",
-          "offset": 97,
+          "value": "LoadInterface",
+          "text": "LoadInterface",
+          "offset": 47,
           "lineBreaks": 0,
-          "line": 9,
-          "col": 5
+          "line": 4,
+          "col": 9
         },
         "arg_list": [
           {
             "type": "string",
-            "value": "\"ciao\"",
-            "text": "\"ciao\"",
-            "offset": 103,
+            "value": "\"./index.html\"",
+            "text": "\"./index.html\"",
+            "offset": 61,
             "lineBreaks": 0,
-            "line": 9,
-            "col": 11
-          }
-        ]
-      },
-      {
-        "type": "declaration and assing f",
-        "var_type": {
-          "type": "types",
-          "value": "int",
-          "text": "int",
-          "offset": 116,
-          "lineBreaks": 0,
-          "line": 10,
-          "col": 5
-        },
-        "var_name": {
-          "type": "id",
-          "value": "s",
-          "text": "int",
-          "offset": 120,
-          "lineBreaks": 0,
-          "line": 10,
-          "col": 9
-        },
-        "var_value": {
-          "type": "function_call",
-          "func_name": {
-            "type": "id",
-            "value": "add",
-            "text": "add",
-            "offset": 124,
-            "lineBreaks": 0,
-            "line": 10,
-            "col": 13
-          },
-          "arg_list": [
-            {
-              "type": "number",
-              "value": "4",
-              "text": "4",
-              "offset": 128,
-              "lineBreaks": 0,
-              "line": 10,
-              "col": 17
-            },
-            {
-              "type": "number",
-              "value": "5",
-              "text": "5",
-              "offset": 131,
-              "lineBreaks": 0,
-              "line": 10,
-              "col": 20
-            }
-          ]
-        }
-      },
-      {
-        "type": "function_call",
-        "func_name": {
-          "type": "id",
-          "value": "print",
-          "text": "print",
-          "offset": 139,
-          "lineBreaks": 0,
-          "line": 11,
-          "col": 5
-        },
-        "arg_list": [
-          {
-            "type": "id",
-            "value": "s",
-            "text": "s",
-            "offset": 145,
-            "lineBreaks": 0,
-            "line": 11,
-            "col": 11
+            "line": 4,
+            "col": 23
           }
         ]
       },
@@ -207,9 +80,9 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 160,
+          "offset": 89,
           "lineBreaks": 0,
-          "line": 12,
+          "line": 5,
           "col": 12
         },
         "r_t": "int | float"

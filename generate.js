@@ -19,11 +19,11 @@ module.exports =
 
             // list of basic and build-in function
 
-            var myFunc = ["print", ]
+            var myFunc = ["print", "LoadInterface"]
 
             // translation to js of function
 
-            var jsFunc = ["console.log", ]
+            var jsFunc = ["console.log", "blib.LoadInterface"]
 
             if(stat.type == "declaration and assing")
             {
@@ -294,6 +294,7 @@ module.exports =
         function generateFromAst(ast)
         {
             const lines = [];
+            lines.push("const blib = require('./basicLib.js')")
             for(let stat of ast)
             {
                 const ll = generateFromStatement(stat);
