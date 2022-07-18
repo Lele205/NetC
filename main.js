@@ -1,8 +1,14 @@
 const blib = require('./basicLib.js')
+function divisione(a, b)
+{
+	var div =  a / b ;
+	return div;
+}
+
 function main()
 {
-	var win;
-	blib.StartServer("./index.html");
+	a = divisione(6, 8);
+	console.log(a);
 	return 0;
 }
 

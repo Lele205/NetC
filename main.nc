@@ -1,6 +1,12 @@
+function float divisione(int a, int b)
+{
+    float div = a / b;
+    return div;
+}
+
 function int main() 
 {
-    window win;
-    win.StartServer("./index.html");
+    int a = divisione(6, 8);
+    print(a);
     return 0;
 }

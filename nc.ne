@@ -30,7 +30,7 @@ statement
     | func_call     {% id %}
 
 assing_fun
-    -> %fnc __ %types __ %id _ "(" _ arg_list _ ")" __ pmlNL fun_body 
+    -> %fnc __ %types __ %id _ "(" _ arg_list _ ")" _ pmlNL fun_body 
     {%
         (data) =>
         {

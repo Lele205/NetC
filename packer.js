@@ -25,8 +25,14 @@ async function main()
         const code  = (await fs.readFile(filename)).toString();
         const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
+        try
+        {
         parser.feed(code);
-
+        } catch(e)
+        {
+            fs.writeFileSync("./ern.nco", "1");
+            throw new Error(chalk.red("SYNTAX ERROR"));
+        }
         if(parser.results.length > 1)
         {
             fs.writeFileSync("./ern.nco", "1");

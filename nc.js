@@ -28,7 +28,7 @@ var grammar = {
     {"name": "statement", "symbols": ["assing_var"], "postprocess": id},
     {"name": "statement", "symbols": ["assing_fun"], "postprocess": id},
     {"name": "statement", "symbols": ["func_call"], "postprocess": id},
-    {"name": "assing_fun", "symbols": [(Lexer.has("fnc") ? {type: "fnc"} : fnc), "__", (Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "__", "pmlNL", "fun_body"], "postprocess": 
+    {"name": "assing_fun", "symbols": [(Lexer.has("fnc") ? {type: "fnc"} : fnc), "__", (Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "_", "pmlNL", "fun_body"], "postprocess": 
         (data) =>
         {
             data[13][0].push(data[13][1]);

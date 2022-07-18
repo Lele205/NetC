@@ -3,8 +3,8 @@
     "type": "Function assing",
     "fun_type": {
       "type": "types",
-      "value": "int",
-      "text": "int",
+      "value": "float",
+      "text": "float",
       "offset": 9,
       "lineBreaks": 0,
       "line": 1,
@@ -12,65 +12,169 @@
     },
     "fun_name": {
       "type": "id",
-      "value": "main",
-      "text": "main",
-      "offset": 13,
+      "value": "divisione",
+      "text": "divisione",
+      "offset": 15,
       "lineBreaks": 0,
       "line": 1,
-      "col": 14
+      "col": 16
     },
-    "parameters": [],
+    "parameters": [
+      {
+        "type": "types",
+        "value": "int",
+        "text": "a",
+        "offset": 25,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 26
+      },
+      {
+        "type": "types",
+        "value": "int",
+        "text": "b",
+        "offset": 32,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 33
+      }
+    ],
     "body": [
       {
-        "type": "declaration",
+        "type": "declaration and assing",
         "var_type": {
           "type": "types",
-          "value": "window",
-          "text": "window",
-          "offset": 27,
+          "value": "float",
+          "text": "float",
+          "offset": 45,
           "lineBreaks": 0,
           "line": 3,
           "col": 5
         },
         "var_name": {
           "type": "id",
-          "value": "win",
-          "text": "window",
-          "offset": 34,
+          "value": "div",
+          "text": "float",
+          "offset": 51,
           "lineBreaks": 0,
           "line": 3,
+          "col": 11
+        },
+        "var_value": {
+          "type": "operation",
+          "value": " a / b "
+        }
+      },
+      {
+        "type": "return",
+        "value": {
+          "type": "id",
+          "value": "div",
+          "text": "div",
+          "offset": 75,
+          "lineBreaks": 0,
+          "line": 4,
           "col": 12
+        },
+        "r_t": "div"
+      }
+    ]
+  },
+  {
+    "type": "Function assing",
+    "fun_type": {
+      "type": "types",
+      "value": "int",
+      "text": "int",
+      "offset": 92,
+      "lineBreaks": 0,
+      "line": 7,
+      "col": 10
+    },
+    "fun_name": {
+      "type": "id",
+      "value": "main",
+      "text": "main",
+      "offset": 96,
+      "lineBreaks": 0,
+      "line": 7,
+      "col": 14
+    },
+    "parameters": [],
+    "body": [
+      {
+        "type": "declaration and assing f",
+        "var_type": {
+          "type": "types",
+          "value": "int",
+          "text": "int",
+          "offset": 110,
+          "lineBreaks": 0,
+          "line": 9,
+          "col": 5
+        },
+        "var_name": {
+          "type": "id",
+          "value": "a",
+          "text": "int",
+          "offset": 114,
+          "lineBreaks": 0,
+          "line": 9,
+          "col": 9
+        },
+        "var_value": {
+          "type": "function_call",
+          "func_name": {
+            "type": "id",
+            "value": "divisione",
+            "text": "divisione",
+            "offset": 118,
+            "lineBreaks": 0,
+            "line": 9,
+            "col": 13
+          },
+          "arg_list": [
+            {
+              "type": "number",
+              "value": "6",
+              "text": "6",
+              "offset": 128,
+              "lineBreaks": 0,
+              "line": 9,
+              "col": 23
+            },
+            {
+              "type": "number",
+              "value": "8",
+              "text": "8",
+              "offset": 131,
+              "lineBreaks": 0,
+              "line": 9,
+              "col": 26
+            }
+          ]
         }
       },
       {
         "type": "function_call",
-        "obj_id": {
-          "type": "id",
-          "value": "win",
-          "text": "win",
-          "offset": 43,
-          "lineBreaks": 0,
-          "line": 4,
-          "col": 5
-        },
         "func_name": {
           "type": "id",
-          "value": "StartServer",
-          "text": "StartServer",
-          "offset": 47,
+          "value": "print",
+          "text": "print",
+          "offset": 139,
           "lineBreaks": 0,
-          "line": 4,
-          "col": 9
+          "line": 10,
+          "col": 5
         },
         "arg_list": [
           {
-            "type": "string",
-            "value": "\"./index.html\"",
-            "text": "\"./index.html\"",
-            "offset": 59,
+            "type": "id",
+            "value": "a",
+            "text": "a",
+            "offset": 145,
             "lineBreaks": 0,
-            "line": 4,
-            "col": 21
+            "line": 10,
+            "col": 11
           }
         ]
       },
@@ -80,9 +184,9 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 87,
+          "offset": 160,
           "lineBreaks": 0,
-          "line": 5,
+          "line": 11,
           "col": 12
         },
         "r_t": "int | float"
