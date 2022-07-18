@@ -1,9 +1,8 @@
-const blib = require('./basicLib.js');
-
+const blib = require('./basicLib.js')
 function main()
 {
 	var win;
-	blib.LoadInterface("./index.html");
+	blib.StartServer("./index.html");
 	return 0;
 }
 

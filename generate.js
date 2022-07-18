@@ -19,11 +19,11 @@ module.exports =
 
             // list of basic and build-in function
 
-            var myFunc = ["print", "LoadInterface"]
+            var myFunc = ["print", "LoadInterface", "StartServer"]
 
             // translation to js of function
 
-            var jsFunc = ["console.log", "blib.LoadInterface"]
+            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer"]
 
             if(stat.type == "declaration and assing")
             {

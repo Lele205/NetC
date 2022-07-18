@@ -35,7 +35,7 @@
         "var_name": {
           "type": "id",
           "value": "win",
-          "text": "win",
+          "text": "window",
           "offset": 34,
           "lineBreaks": 0,
           "line": 3,
@@ -55,8 +55,8 @@
         },
         "func_name": {
           "type": "id",
-          "value": "LoadInterface",
-          "text": "LoadInterface",
+          "value": "StartServer",
+          "text": "StartServer",
           "offset": 47,
           "lineBreaks": 0,
           "line": 4,
@@ -67,10 +67,10 @@
             "type": "string",
             "value": "\"./index.html\"",
             "text": "\"./index.html\"",
-            "offset": 61,
+            "offset": 59,
             "lineBreaks": 0,
             "line": 4,
-            "col": 23
+            "col": 21
           }
         ]
       },
@@ -80,7 +80,7 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 89,
+          "offset": 87,
           "lineBreaks": 0,
           "line": 5,
           "col": 12

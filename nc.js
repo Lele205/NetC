@@ -107,6 +107,7 @@ var grammar = {
     {"name": "assing_var", "symbols": [(Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"="}, "_", "func_call", "_"], "postprocess": 
         (data) =>
         {
+            
             return {
                 type: "assing f",
                 var_name: data[0],
@@ -176,6 +177,7 @@ var grammar = {
     {"name": "assing_var", "symbols": [(Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":";"}], "postprocess": 
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration",
                 var_type: data[0],

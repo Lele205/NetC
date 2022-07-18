@@ -1,6 +1,6 @@
 function int main() 
 {
     window win;
-    win.LoadInterface("./index.html");
+    win.StartServer("./index.html");
     return 0;
 }

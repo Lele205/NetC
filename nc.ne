@@ -126,6 +126,7 @@ assing_var
     {%
         (data) =>
         {
+            
             return {
                 type: "assing f",
                 var_name: data[0],
@@ -207,6 +208,7 @@ assing_var
     {%
         (data) =>
         {
+            data[2].text = data[0].value;
             return {
                 type: "declaration",
                 var_type: data[0],
