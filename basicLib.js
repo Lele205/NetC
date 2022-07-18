@@ -1,6 +1,7 @@
 const prompt = require('prompt-sync')();
 const http = require('http');
 const fs = require('fs');
+const chalk = require("chalk");
 
 module.exports = 
 {
@@ -11,6 +12,7 @@ module.exports =
 
     StartServer: async function(file)
     {
+        console.log(chalk.green("SERVER STARTED AT:  http://localhost:8000"));
         async function load(file)
         {
             http.createServer(function(req, res){

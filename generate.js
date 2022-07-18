@@ -19,11 +19,15 @@ module.exports =
 
             // list of basic and build-in function
 
-            var myFunc = ["print", "LoadInterface", "StartServer"]
+            var myFunc = ["print", "LoadInterface", "StartServer", "clean"]
 
             // translation to js of function
 
-            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer"]
+            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer", "clean"]
+
+            // window function
+
+            var winFunction = ["LoadInterface", "StartServer"]
 
             if(stat.type == "declaration and assing")
             {
@@ -46,6 +50,7 @@ module.exports =
                                 {
                                     continue;
                                 }
+                                fs.writeFileSync("./ern.nco", "1");
                                 throw new Error (chalk.red(`GENERATION ERROR 0x001 (Assing to a variable of type ${type} the value of var: ${myAssing[i].name} of type: ${myAssing[i].type})`));
                             } 
                         }
@@ -60,6 +65,7 @@ module.exports =
                     {
                         if(myAssing[i].type !== type)
                         {
+                            fs.writeFileSync("./ern.nco", "1");
                             throw new Error (chalk.red(`GENERATION ERROR 0x001 (Assing to a variable of type ${type} the value of var: ${myAssing[i].name} of type: ${myAssing[i].type})`));
                         }
                         break;
@@ -87,6 +93,7 @@ module.exports =
                             {
                                 if(myAssing[i].type != lastFuncType)
                                 {
+                                    fs.writeFileSync("./ern.nco", "1");
                                     throw new Error (chalk.red(`GENERATION ERROR 0x002 (return to a variable of type ${myAssing[i].type} in a function of type: ${lastFuncType})`));
                                 }
                                 break;
@@ -173,6 +180,7 @@ module.exports =
                                 {
                                     continue;
                                 }
+                                fs.writeFileSync("./ern.nco", "1");
                                 throw new Error (chalk.red(`GENERATION ERROR 0x001 (Assing to a variable of type ${type} the value of var: ${myAssing[i].name} of type: ${myAssing[i].type})`));
                             } 
                         }
@@ -187,6 +195,7 @@ module.exports =
                     {
                         if(myAssing[i].type !== type)
                         {
+                            fs.writeFileSync("./ern.nco", "1");
                             throw new Error (chalk.red(`GENERATION ERROR 0x001 (Assing to a variable of type ${type} the value of var: ${myAssing[i].name} of type: ${myAssing[i].type})`));
                         }
                         break;
@@ -267,7 +276,39 @@ module.exports =
                         break;
                     }
                 }
-                if(!isList)
+                if(isList)
+                {
+                    if(stat.obj_id !== undefined)
+                    {
+                        for(i in myAssing)
+                        {
+                            if(stat.obj_id == myAssing[i].name)
+                            {
+                                var not = true;
+                                var str;
+                                if(myAssing[i].type == "window")
+                                {
+                                    str = "window";
+                                    for(j in winFunction)
+                                    {
+                                        if(winFunction[j] == stat.func_name.value)
+                                        {
+                                            not = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(not)
+                                {
+                                    fs.writeFileSync("./ern.nco", "1");
+                                    throw new Error (chalk.red(`GENERATION ERROR 0x003 (Calling to a variable of type ${myAssing[i].type} the function: ${stat.func_name.value}() of type: ${str} )`), );
+                                }
+                            }
+                        
+                        }
+                    }
+                }
+                else
                 {
                     out = `${stat.func_name.value}(`;
                 }

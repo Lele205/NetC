@@ -4,6 +4,7 @@ const fs = require('mz/fs');
 const chalk = require("chalk");
 var gen = require('./generate.js');
 const exec = require('child_process').exec;
+const path = require('path');
 
 async function main()
 {
@@ -12,11 +13,13 @@ async function main()
     if(!filename)
     {
         console.log(chalk.red("Please give me an:"), chalk.green(".nc"), chalk.red("File"));
+        fs.writeFileSync("./ern.nco", "1");
         return null;
     }
     if(!filename.endsWith(".nc"))
     {
         console.log(chalk.red(`The file "%s" is not an nc source file`), filename);
+        fs.writeFileSync("./ern.nco", "1");
         return null;
     }
         const code  = (await fs.readFile(filename)).toString();
@@ -26,6 +29,7 @@ async function main()
 
         if(parser.results.length > 1)
         {
+            fs.writeFileSync("./ern.nco", "1");
             throw new Error(chalk.red("PARSER ERROR 0x001"));
         }
         else if(parser.results.length === 1)
@@ -38,16 +42,12 @@ async function main()
             console.log(chalk.green("\tGENERATION COMPLETED!\n"));
 
             const jsFilname = filename.replace(".nc", ".js");
-            var command = "node " + jsFilname; 
-            const child = exec(command, (error, stdout, stderr) => {
-                    console.log(`${stdout}`);
-                    if (error !== null) {
-                        console.log(`exec error: ${error}`);
-                    }
-                });
+            var command = path.join(__dirname, "./runner.o") + " " +jsFilname;
+            
         }
         else
         {
+            fs.writeFileSync("./ern.nco", "1");
             throw new Error(chalk.red("PARSER ERROR 0x002"));
         }
 
