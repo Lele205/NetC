@@ -19,11 +19,11 @@ module.exports =
 
             // list of basic and build-in function
 
-            var myFunc = ["print", "LoadInterface", "StartServer", "clean"]
+            var myFunc = ["print", "LoadInterface", "StartServer"]
 
             // translation to js of function
 
-            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer", "clean"]
+            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer"]
 
             // window function
 
@@ -99,6 +99,34 @@ module.exports =
                                 break;
                             }
                         }
+                }
+                if(stat.value.type == "function_call")
+                {
+                    out = `return ${stat.value.func_name.value}(`;
+                    for(i in myFunc)
+                    {
+                        if(stat.value.func_name.value == myFunc[i])
+                        {
+                            out = `return ${jsFunc[i]}(`;
+                            break;
+                        }
+                    }
+                    if(stat.value.arg_list.length !== 0)
+                    {
+                        if(stat.value.arg_list.length !== 1)
+                        {
+                            for(var i = 0; i < stat.value.arg_list.length - 1; i++)
+                            {
+                                out += `${stat.value.arg_list[i].value}, `;
+                            }
+                            out += `${stat.value.arg_list[stat.value.arg_list.length - 1].value}`;
+                        }
+                        else
+                        {
+                            out += stat.value.arg_list[0].value;
+                        }
+                    }
+                    out += ");";
                 }
                 return out;
             }

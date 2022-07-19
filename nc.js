@@ -47,6 +47,12 @@ var grammar = {
             return [data[3], data[6]];
         }
             },
+    {"name": "fun_body", "symbols": [{"literal":"{"}, "_", "mlNL", "_", "return_stat", "_", "mlNL", "_", {"literal":"}"}], "postprocess": 
+        (data) =>
+        {
+            return [data[1], data[4]];
+        }
+            },
     {"name": "return_stat", "symbols": [{"literal":"return"}, "_", (Lexer.has("number") ? {type: "number"} : number), "_", {"literal":";"}], "postprocess":   
         (data) =>
         {
@@ -54,6 +60,28 @@ var grammar = {
                 type: "return",
                 value: data[2],
                 r_t: "int | float"
+            }
+        }
+            },
+    {"name": "return_stat", "symbols": [{"literal":"return"}, "_", "op", "_", {"literal":";"}], "postprocess":   
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "int | float"
+            }
+        }
+            },
+    {"name": "return_stat", "symbols": [{"literal":"return"}, "_", "rt_func_call", "_", {"literal":";"}], "postprocess":   
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "fnc_call"
             }
         }
             },
@@ -288,6 +316,27 @@ var grammar = {
             }
         }
             },
+    {"name": "rt_func_call", "symbols": [(Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "_"], "postprocess": 
+        (data) =>
+        {
+            return{
+                type: "function_call",
+                func_name: data[0],
+                arg_list: data[4]
+            }
+        }
+            },
+    {"name": "rt_func_call", "symbols": [(Lexer.has("id") ? {type: "id"} : id), {"literal":"."}, (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "_"], "postprocess": 
+        (data) =>
+        {
+            return{
+                type: "function_call",
+                obj_id: data[0],
+                func_name: data[2],
+                arg_list: data[6]
+            }
+        }
+            },
     {"name": "arg_list", "symbols": [], "postprocess": 
         (data) =>
         {
@@ -312,6 +361,12 @@ var grammar = {
         {
             data[0].text = data[2].value;
             return [data[0]]
+        }
+            },
+    {"name": "arg_list", "symbols": ["_", "op", "_"], "postprocess": 
+        (data) =>
+        {
+            return[data[1]]
         }
             },
     {"name": "arg_list", "symbols": ["_", "str", "_"], "postprocess": 

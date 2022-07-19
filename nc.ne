@@ -53,6 +53,13 @@ fun_body
             return [data[3], data[6]];
         }
     %}
+    | "{" _ mlNL _ return_stat  _ mlNL _ "}"
+    {%
+        (data) =>
+        {
+            return [data[1], data[4]];
+        }
+    %}
 
 return_stat
     ->  "return" _ %number _ ";"
@@ -66,6 +73,33 @@ return_stat
             }
         }
     %}
+
+    |  "return" _ op _ ";"
+    {%  
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "int | float"
+            }
+        }
+    %}
+
+    |  "return" _ rt_func_call _ ";"
+    {%  
+        (data) =>
+        {
+        
+            return {
+                type: "return",
+                value: data[2],
+                r_t: "fnc_call"
+            }
+        }
+    %}
+
     |  "return" _ %id _ ";"
     {%  
         (data) =>
@@ -343,6 +377,31 @@ func_call
         }
     %}
 
+rt_func_call
+    -> %id _ "(" _ arg_list _ ")" _ 
+    {%
+        (data) =>
+        {
+            return{
+                type: "function_call",
+                func_name: data[0],
+                arg_list: data[4]
+            }
+        }
+    %}
+    | %id "." %id _ "(" _ arg_list _ ")" _ 
+    {%
+        (data) =>
+        {
+            return{
+                type: "function_call",
+                obj_id: data[0],
+                func_name: data[2],
+                arg_list: data[6]
+            }
+        }
+    %}
+
 arg_list
 
     -> null
@@ -376,6 +435,14 @@ arg_list
         {
             data[0].text = data[2].value;
             return [data[0]]
+        }
+    %}
+
+    | _ op _ 
+    {%
+        (data) =>
+        {
+            return[data[1]]
         }
     %}
 

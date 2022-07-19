@@ -1,14 +1,13 @@
 const blib = require('./basicLib.js')
-function divisione(a, b)
+function fattoriale(a)
 {
-	var div =  a / b ;
-	return div;
+	console.log(a);
+	return fattoriale( a - 1 );
 }
 
 function main()
 {
-	a = divisione(6, 8);
-	console.log(a);
+	fattoriale(4);
 	return 0;
 }
 

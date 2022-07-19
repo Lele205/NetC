@@ -1,12 +1,11 @@
-function float divisione(int a, int b)
+function float fattoriale(int a)
 {
-    float div = a / b;
-    return div;
+    print(a);
+    return fattoriale(a-1);
 }
 
 function int main() 
 {
-    int a = divisione(6, 8);
-    print(a);
+    fattoriale(4);
     return 0;
 }

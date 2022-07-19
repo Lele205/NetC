@@ -12,8 +12,8 @@
     },
     "fun_name": {
       "type": "id",
-      "value": "divisione",
-      "text": "divisione",
+      "value": "fattoriale",
+      "text": "fattoriale",
       "offset": 15,
       "lineBreaks": 0,
       "line": 1,
@@ -24,59 +24,57 @@
         "type": "types",
         "value": "int",
         "text": "a",
-        "offset": 25,
+        "offset": 26,
         "lineBreaks": 0,
         "line": 1,
-        "col": 26
-      },
-      {
-        "type": "types",
-        "value": "int",
-        "text": "b",
-        "offset": 32,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 33
+        "col": 27
       }
     ],
     "body": [
       {
-        "type": "declaration and assing",
-        "var_type": {
-          "type": "types",
-          "value": "float",
-          "text": "float",
-          "offset": 45,
+        "type": "function_call",
+        "func_name": {
+          "type": "id",
+          "value": "print",
+          "text": "print",
+          "offset": 39,
           "lineBreaks": 0,
           "line": 3,
           "col": 5
         },
-        "var_name": {
-          "type": "id",
-          "value": "div",
-          "text": "float",
-          "offset": 51,
-          "lineBreaks": 0,
-          "line": 3,
-          "col": 11
-        },
-        "var_value": {
-          "type": "operation",
-          "value": " a / b "
-        }
+        "arg_list": [
+          {
+            "type": "id",
+            "value": "a",
+            "text": "a",
+            "offset": 45,
+            "lineBreaks": 0,
+            "line": 3,
+            "col": 11
+          }
+        ]
       },
       {
         "type": "return",
         "value": {
-          "type": "id",
-          "value": "div",
-          "text": "div",
-          "offset": 75,
-          "lineBreaks": 0,
-          "line": 4,
-          "col": 12
+          "type": "function_call",
+          "func_name": {
+            "type": "id",
+            "value": "fattoriale",
+            "text": "fattoriale",
+            "offset": 60,
+            "lineBreaks": 0,
+            "line": 4,
+            "col": 12
+          },
+          "arg_list": [
+            {
+              "type": "operation",
+              "value": " a - 1 "
+            }
+          ]
         },
-        "r_t": "div"
+        "r_t": "fnc_call"
       }
     ]
   },
@@ -86,7 +84,7 @@
       "type": "types",
       "value": "int",
       "text": "int",
-      "offset": 92,
+      "offset": 89,
       "lineBreaks": 0,
       "line": 7,
       "col": 10
@@ -95,7 +93,7 @@
       "type": "id",
       "value": "main",
       "text": "main",
-      "offset": 96,
+      "offset": 93,
       "lineBreaks": 0,
       "line": 7,
       "col": 14
@@ -103,78 +101,25 @@
     "parameters": [],
     "body": [
       {
-        "type": "declaration and assing f",
-        "var_type": {
-          "type": "types",
-          "value": "int",
-          "text": "int",
-          "offset": 110,
-          "lineBreaks": 0,
-          "line": 9,
-          "col": 5
-        },
-        "var_name": {
-          "type": "id",
-          "value": "a",
-          "text": "int",
-          "offset": 114,
-          "lineBreaks": 0,
-          "line": 9,
-          "col": 9
-        },
-        "var_value": {
-          "type": "function_call",
-          "func_name": {
-            "type": "id",
-            "value": "divisione",
-            "text": "divisione",
-            "offset": 118,
-            "lineBreaks": 0,
-            "line": 9,
-            "col": 13
-          },
-          "arg_list": [
-            {
-              "type": "number",
-              "value": "6",
-              "text": "6",
-              "offset": 128,
-              "lineBreaks": 0,
-              "line": 9,
-              "col": 23
-            },
-            {
-              "type": "number",
-              "value": "8",
-              "text": "8",
-              "offset": 131,
-              "lineBreaks": 0,
-              "line": 9,
-              "col": 26
-            }
-          ]
-        }
-      },
-      {
         "type": "function_call",
         "func_name": {
           "type": "id",
-          "value": "print",
-          "text": "print",
-          "offset": 139,
+          "value": "fattoriale",
+          "text": "fattoriale",
+          "offset": 107,
           "lineBreaks": 0,
-          "line": 10,
+          "line": 9,
           "col": 5
         },
         "arg_list": [
           {
-            "type": "id",
-            "value": "a",
-            "text": "a",
-            "offset": 145,
+            "type": "number",
+            "value": "4",
+            "text": "4",
+            "offset": 118,
             "lineBreaks": 0,
-            "line": 10,
-            "col": 11
+            "line": 9,
+            "col": 16
           }
         ]
       },
@@ -184,9 +129,9 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 160,
+          "offset": 133,
           "lineBreaks": 0,
-          "line": 11,
+          "line": 10,
           "col": 12
         },
         "r_t": "int | float"

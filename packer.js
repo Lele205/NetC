@@ -31,6 +31,7 @@ async function main()
         } catch(e)
         {
             fs.writeFileSync("./ern.nco", "1");
+            console.log(e);
             throw new Error(chalk.red("SYNTAX ERROR"));
         }
         if(parser.results.length > 1)
