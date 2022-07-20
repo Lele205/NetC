@@ -26,6 +26,7 @@ pmlNL -> %NL:*
 
 statement
     -> assing_var   {% id %}
+    | if_stat       {% id %}
     | assing_fun    {% id %}
     | func_call     {% id %}
 
@@ -327,6 +328,17 @@ op
         }
     %}
 
+    | %id _ operator _ func_call
+    {%
+        (data) =>
+        {
+            return {
+                type: "operation",
+                value: (" " + String(data[0]) + " " + String(data[2]) + " " +String(data[4].fun_name.value) + " ")
+            }
+        }
+    %}
+
     | %id _ operator _ "(" _ op _ ")"
     {%
         (data) =>
@@ -337,6 +349,73 @@ op
             }
         }
     %}    
+
+if_stat
+    -> %if_t _ "(" _ if_args _ ")" _ mlNL _ b_body 
+    {%
+        (data) =>
+        {
+            data[10][0].push(data[10][1]);
+            
+            return {
+                type: "if",
+                arg: data[4],
+                body: data[10][0][1][0]
+            }
+        }
+    %}
+
+nt_rtn_dep -> return_stat:*
+
+b_body
+     -> "{" _ mlNL statements mlNL _ nt_rtn_dep  _ mlNL _ "}"
+    {%
+        (data) =>
+        {
+            return [data[3], data[6]];
+        }
+    %}
+    | "{" _ mlNL _ nt_rtn_dep  _ mlNL _ "}"
+    {%
+        (data) =>
+        {
+            return [data[1], data[4]];
+        }
+    %}
+
+if_args
+    -> _ %id _ logic_operetor _ %id 
+    {%
+        (data) =>
+        {
+            return " " + String(data[1]) + " " + String(data[3]) + " " + String(data[5]) + " "
+        }
+    %}
+
+    | _ %id _ logic_operetor _ if_args 
+    {%
+        (data) =>
+        {
+            return " " + String(data[1]) + " " + String(data[3]) + " " + String(data[5]) + " "
+        }
+    %}
+    
+    | _ %id _
+    {%
+        (data) =>
+        {
+            return " " + String(data[1]) + " "
+        }
+    %}
+
+    | _ exp _
+    {%
+        (data) =>
+        {
+            return [" " + String(data[1]) + " "]
+        }
+    %}
+
 
 
 operator
@@ -351,6 +430,16 @@ operator
     | "/"   
     | "%"   
 
+logic_operetor
+    -> "&"
+    | "|"
+    | "!"
+    | "=="
+    | "!="
+    | "and"
+    | "or"
+    | "not"
+    | "equals"
 
 func_call
     -> %id _ "(" _ arg_list _ ")" _ ";"

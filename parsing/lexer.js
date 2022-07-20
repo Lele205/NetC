@@ -18,6 +18,7 @@ let lexer = moo.compile
     e_mu: "*=",
     e_di: "/=",
     e_mo: "%=",
+    equality: "==",
     not:  "!",
     and:  "&",
     or:   "|",
@@ -34,7 +35,8 @@ let lexer = moo.compile
     types: ['int', 'float', 'double', 'string', 'array', 'matrix', 'file', 'vector', "window", 'bool'],
     fnc: 'function',
     rtn: 'return',
-    keywords: ['while', 'for', 'if', 'elif', 'else', 'switch', 'class', 'public', 'private', 'constructor', 'deconstructor', 'use', 'struct', 'and', 'or', 'in'],
+    if_t: 'if',
+    keywords: ['while', 'for', 'elif', 'else', 'switch', 'class', 'public', 'private', 'constructor', 'deconstructor', 'use', 'struct', 'and', 'or', 'in'],
     bool: ["true", "false"],
     id: /[a-zA-Z][a-zA-Z_0-9]*/,
 })

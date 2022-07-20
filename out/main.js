@@ -1,13 +1,21 @@
 const blib = require('../libraries/basicLib.js')
 function fattoriale(a)
 {
-	console.log(a);
-	return fattoriale( a - 1 );
+	if( a ==  1  )
+{
+
+	return a;
+}
+
+	s = fattoriale( a - 1 );
+	s *= a ;
+	return s;
 }
 
 function main()
 {
-	fattoriale(4);
+	a = fattoriale(10);
+	console.log(a);
 	return 0;
 }
 

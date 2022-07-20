@@ -26,6 +26,7 @@ var grammar = {
     {"name": "pmlNL$ebnf$1", "symbols": ["pmlNL$ebnf$1", (Lexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "pmlNL", "symbols": ["pmlNL$ebnf$1"]},
     {"name": "statement", "symbols": ["assing_var"], "postprocess": id},
+    {"name": "statement", "symbols": ["if_stat"], "postprocess": id},
     {"name": "statement", "symbols": ["assing_fun"], "postprocess": id},
     {"name": "statement", "symbols": ["func_call"], "postprocess": id},
     {"name": "assing_fun", "symbols": [(Lexer.has("fnc") ? {type: "fnc"} : fnc), "__", (Lexer.has("types") ? {type: "types"} : types), "__", (Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "_", "pmlNL", "fun_body"], "postprocess": 
@@ -285,6 +286,57 @@ var grammar = {
             }
         }
             },
+    {"name": "if_stat", "symbols": [(Lexer.has("if_t") ? {type: "if_t"} : if_t), "_", {"literal":"("}, "_", "if_args", "_", {"literal":")"}, "_", "mlNL", "_", "b_body"], "postprocess": 
+        (data) =>
+        {
+            data[10][0].push(data[10][1]);
+            
+            return {
+                type: "if",
+                arg: data[4],
+                body: data[10][0][1][0]
+            }
+        }
+            },
+    {"name": "nt_rtn_dep$ebnf$1", "symbols": []},
+    {"name": "nt_rtn_dep$ebnf$1", "symbols": ["nt_rtn_dep$ebnf$1", "return_stat"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "nt_rtn_dep", "symbols": ["nt_rtn_dep$ebnf$1"]},
+    {"name": "b_body", "symbols": [{"literal":"{"}, "_", "mlNL", "statements", "mlNL", "_", "nt_rtn_dep", "_", "mlNL", "_", {"literal":"}"}], "postprocess": 
+        (data) =>
+        {
+            return [data[3], data[6]];
+        }
+            },
+    {"name": "b_body", "symbols": [{"literal":"{"}, "_", "mlNL", "_", "nt_rtn_dep", "_", "mlNL", "_", {"literal":"}"}], "postprocess": 
+        (data) =>
+        {
+            return [data[1], data[4]];
+        }
+            },
+    {"name": "if_args", "symbols": ["_", (Lexer.has("id") ? {type: "id"} : id), "_", "logic_operetor", "_", (Lexer.has("id") ? {type: "id"} : id)], "postprocess": 
+        (data) =>
+        {
+            return " " + String(data[1]) + " " + String(data[3]) + " " + String(data[5]) + " "
+        }
+            },
+    {"name": "if_args", "symbols": ["_", (Lexer.has("id") ? {type: "id"} : id), "_", "logic_operetor", "_", "if_args"], "postprocess": 
+        (data) =>
+        {
+            return " " + String(data[1]) + " " + String(data[3]) + " " + String(data[5]) + " "
+        }
+            },
+    {"name": "if_args", "symbols": ["_", (Lexer.has("id") ? {type: "id"} : id), "_"], "postprocess": 
+        (data) =>
+        {
+            return " " + String(data[1]) + " "
+        }
+            },
+    {"name": "if_args", "symbols": ["_", "exp", "_"], "postprocess": 
+        (data) =>
+        {
+            return [" " + String(data[1]) + " "]
+        }
+            },
     {"name": "operator", "symbols": [{"literal":"+="}]},
     {"name": "operator", "symbols": [{"literal":"-="}]},
     {"name": "operator", "symbols": [{"literal":"*="}]},
@@ -295,6 +347,15 @@ var grammar = {
     {"name": "operator", "symbols": [{"literal":"*"}]},
     {"name": "operator", "symbols": [{"literal":"/"}]},
     {"name": "operator", "symbols": [{"literal":"%"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"&"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"|"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"!"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"=="}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"!="}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"and"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"or"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"not"}]},
+    {"name": "logic_operetor", "symbols": [{"literal":"equals"}]},
     {"name": "func_call", "symbols": [(Lexer.has("id") ? {type: "id"} : id), "_", {"literal":"("}, "_", "arg_list", "_", {"literal":")"}, "_", {"literal":";"}], "postprocess": 
         (data) =>
         {

@@ -82,6 +82,21 @@ module.exports =
 
                 return out;
             }
+            else if (stat.type == "if")
+            {
+                var out = `if(${stat.arg})\n{\n`;
+                var arrBody = ['']
+
+                for(let bb of stat.body)
+                {
+                    const li = generateFromStatement(bb);
+                    arrBody.push(li);
+                }
+                out += arrBody.join("\n\t");
+                out += "\n}\n";
+                
+                return out;
+            }
             else if (stat.type == "return")
             {
                 var out = `return ${stat.value.value};`
