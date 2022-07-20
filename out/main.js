@@ -1,4 +1,4 @@
-const blib = require('./basicLib.js')
+const blib = require('../libraries/basicLib.js')
 function fattoriale(a)
 {
 	console.log(a);

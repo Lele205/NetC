@@ -363,7 +363,7 @@ module.exports =
         function generateFromAst(ast)
         {
             const lines = [];
-            lines.push("const blib = require('./basicLib.js')")
+            lines.push("const blib = require('../libraries/basicLib.js')")
             for(let stat of ast)
             {
                 const ll = generateFromStatement(stat);
@@ -378,6 +378,7 @@ module.exports =
         var out = generateFromAst(ast);
 
         var filen = (filename.replace(".nc", ".js"));
+        filen = "./out/" + filen;
         fs.writeFileSync(filen, out);
 
     }

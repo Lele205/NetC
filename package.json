@@ -4,7 +4,7 @@
     "description": "This is a project to create a language similar to C/C++, this can be used for desktop apps or internet applications due to his high flexibility ",
     "main": "index.js",
     "scripts": {
-        "gen-parser": "nearleyc nc.ne -o nc.js"
+        "gen-parser": "nearleyc ./parsing/nc.ne -o nc.js"
     },
     "dependencies": {
         "chalk": "^4.1.2",

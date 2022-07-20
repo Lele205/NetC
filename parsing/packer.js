@@ -43,7 +43,7 @@ async function main()
         {
             const ast = parser.results[0];
             const output_fileName = filename.replace(".nc", ".ast");
-            const file = (await fs.writeFile(output_fileName, JSON.stringify(ast, null, "  ")));
+            const file = (await fs.writeFile("./bin/" + output_fileName, JSON.stringify(ast, null, "  ")));
             console.log(chalk.green("\n\tPARSING COMPLETED!\n"));
             generateJS = gen.genJS(filename, ast);
             console.log(chalk.green("\tGENERATION COMPLETED!\n"));
