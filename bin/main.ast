@@ -35,6 +35,7 @@
         "type": "if",
         "arg": " a ==  1  ",
         "body": [
+          [],
           {
             "type": "return",
             "value": {

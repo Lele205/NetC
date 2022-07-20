@@ -289,12 +289,12 @@ var grammar = {
     {"name": "if_stat", "symbols": [(Lexer.has("if_t") ? {type: "if_t"} : if_t), "_", {"literal":"("}, "_", "if_args", "_", {"literal":")"}, "_", "mlNL", "_", "b_body"], "postprocess": 
         (data) =>
         {
-            data[10][0].push(data[10][1]);
+            data[10][0].push(data[10][1][0][0]);
             
             return {
                 type: "if",
                 arg: data[4],
-                body: data[10][0][1][0]
+                body: data[10][0]
             }
         }
             },
