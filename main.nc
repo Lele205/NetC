@@ -11,7 +11,7 @@ function float fattoriale(int a)
 
 function int main() 
 {
-    int a = fattoriale(10);
+    int a = Rand();
     print(a);
     return 0;
 }

@@ -8,14 +8,14 @@ function fattoriale(a)
 	return a;
 }
 
-	s = fattoriale( a - 1 );
+	var s = fattoriale( a - 1 );
 	s *= a ;
 	return s;
 }
 
 function main()
 {
-	a = fattoriale(10);
+	var a = Math.random();
 	console.log(a);
 	return 0;
 }

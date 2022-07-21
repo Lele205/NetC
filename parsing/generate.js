@@ -19,11 +19,11 @@ module.exports =
 
             // list of basic and build-in function
 
-            var myFunc = ["print", "LoadInterface", "StartServer"]
+            var myFunc = ["print", "LoadInterface", "StartServer", "pow", "sqrt", "cos", "sin", "tan", "IntRound", "Rand"]
 
             // translation to js of function
 
-            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer"]
+            var jsFunc = ["console.log", "blib.LoadInterface", "blib.StartServer", "Math.pow", "Math.sqrt", "Math.cos", "Math.sin", "Math.tan", "Math.round", "Math.random"]
 
             // window function
 
@@ -262,7 +262,22 @@ module.exports =
             else if(stat.type == "declaration and assing f")
             {
                 co += 1;
-                var out = `${stat.var_name.value} = ${stat.var_value.func_name.value}(`;
+
+                var out;
+
+                for(var i  = 0; i < myFunc.length; i++)
+                {
+                    if(stat.var_value.func_name.value == myFunc[i])
+                    {
+                        out = `var ${stat.var_name.value} = ${jsFunc[i]}(`;
+                        isList = true;
+                        break;
+                    }
+                    else
+                    {
+                        out = `var ${stat.var_name.value} = ${stat.var_value.func_name.value}(`;
+                    }
+                }
                 
                 var tmp = { name: "", type: ""};
                 tmp.name = stat.var_name.value;
@@ -270,17 +285,20 @@ module.exports =
 
                 myAssing.push(tmp)
 
-                if(stat.var_value.arg_list.length !== 1)
+                if(stat.var_value.arg_list.length !== 0)
                 {
-                    for(var i = 0; i < stat.var_value.arg_list.length - 1; i++)
+                    if(stat.var_value.arg_list.length !== 1)
                     {
-                        out += `${stat.var_value.arg_list[i].value}, `;
+                        for(var i = 0; i < stat.var_value.arg_list.length - 1; i++)
+                        {
+                            out += `${stat.var_value.arg_list[i].value}, `;
+                        }
+                        out += `${stat.var_value.arg_list[stat.var_value.arg_list.length - 1].value}`;
                     }
-                    out += `${stat.var_value.arg_list[stat.var_value.arg_list.length - 1].value}`;
-                }
-                else
-                {
-                    out += stat.var_value.arg_list[0].value;
+                    else
+                    {
+                        out += stat.var_value.arg_list[0].value;
+                    }
                 }
                 out += ");";
 

@@ -167,24 +167,14 @@
           "type": "function_call",
           "func_name": {
             "type": "id",
-            "value": "fattoriale",
-            "text": "fattoriale",
+            "value": "Rand",
+            "text": "Rand",
             "offset": 173,
             "lineBreaks": 0,
             "line": 14,
             "col": 13
           },
-          "arg_list": [
-            {
-              "type": "number",
-              "value": "10",
-              "text": "10",
-              "offset": 184,
-              "lineBreaks": 0,
-              "line": 14,
-              "col": 24
-            }
-          ]
+          "arg_list": []
         }
       },
       {
@@ -193,7 +183,7 @@
           "type": "id",
           "value": "print",
           "text": "print",
-          "offset": 193,
+          "offset": 185,
           "lineBreaks": 0,
           "line": 15,
           "col": 5
@@ -203,7 +193,7 @@
             "type": "id",
             "value": "a",
             "text": "a",
-            "offset": 199,
+            "offset": 191,
             "lineBreaks": 0,
             "line": 15,
             "col": 11
@@ -216,7 +206,7 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 214,
+          "offset": 206,
           "lineBreaks": 0,
           "line": 16,
           "col": 12
