@@ -15,8 +15,8 @@ function fattoriale(a)
 
 function main()
 {
-	var a = Math.random();
-	console.log(a);
+	var win;
+	blib.LoadInterface("./index.html");
 	return 0;
 }
 

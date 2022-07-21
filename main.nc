@@ -11,7 +11,7 @@ function float fattoriale(int a)
 
 function int main() 
 {
-    int a = Rand();
-    print(a);
+    window win;
+    win.LoadInterface("./index.html");
     return 0;
 }

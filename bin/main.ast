@@ -144,11 +144,11 @@
     "parameters": [],
     "body": [
       {
-        "type": "declaration and assing f",
+        "type": "declaration",
         "var_type": {
           "type": "types",
-          "value": "int",
-          "text": "int",
+          "value": "window",
+          "text": "window",
           "offset": 165,
           "lineBreaks": 0,
           "line": 14,
@@ -156,47 +156,43 @@
         },
         "var_name": {
           "type": "id",
-          "value": "a",
-          "text": "int",
-          "offset": 169,
+          "value": "win",
+          "text": "window",
+          "offset": 172,
           "lineBreaks": 0,
           "line": 14,
-          "col": 9
-        },
-        "var_value": {
-          "type": "function_call",
-          "func_name": {
-            "type": "id",
-            "value": "Rand",
-            "text": "Rand",
-            "offset": 173,
-            "lineBreaks": 0,
-            "line": 14,
-            "col": 13
-          },
-          "arg_list": []
+          "col": 12
         }
       },
       {
         "type": "function_call",
-        "func_name": {
+        "obj_id": {
           "type": "id",
-          "value": "print",
-          "text": "print",
-          "offset": 185,
+          "value": "win",
+          "text": "win",
+          "offset": 181,
           "lineBreaks": 0,
           "line": 15,
           "col": 5
         },
+        "func_name": {
+          "type": "id",
+          "value": "LoadInterface",
+          "text": "LoadInterface",
+          "offset": 185,
+          "lineBreaks": 0,
+          "line": 15,
+          "col": 9
+        },
         "arg_list": [
           {
-            "type": "id",
-            "value": "a",
-            "text": "a",
-            "offset": 191,
+            "type": "string",
+            "value": "\"./index.html\"",
+            "text": "\"./index.html\"",
+            "offset": 199,
             "lineBreaks": 0,
             "line": 15,
-            "col": 11
+            "col": 23
           }
         ]
       },
@@ -206,7 +202,7 @@
           "type": "number",
           "value": "0",
           "text": "0",
-          "offset": 206,
+          "offset": 227,
           "lineBreaks": 0,
           "line": 16,
           "col": 12
